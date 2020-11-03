@@ -1,0 +1,57 @@
+#include <iostream>
+int pomocnik;
+using namespace std;
+int main()
+
+
+{
+    int velikost_pole = 0;
+    cout << "zadejte pocet hodnot: " << std::endl;
+    cin >> velikost_pole;
+
+    float* dynamicke_pole;
+    dynamicke_pole = (float*)malloc(velikost_pole * sizeof(float));
+    while (!dynamicke_pole || velikost_pole > 100)
+   
+    {
+        // pokud ne, vypiš chybu a ukonči program
+        cout << "Chyba, zvol si pole o velikosti az 100 prvku." << endl;
+        cin >> velikost_pole;
+
+        //dynamicke_pole = (float*)malloc(velikost_pole * sizeof(float));
+        dynamicke_pole = (float*)malloc(velikost_pole * sizeof(float));
+    }
+
+
+
+    cout << "Zadejte " << velikost_pole << " hodnot: (PS: 0 ukoncis)" << endl;
+    
+    
+    for (int i = 0; i < velikost_pole; i++)
+         {
+             cin >> dynamicke_pole[i];
+
+             if (dynamicke_pole[i] == 0)
+            {
+                pomocnik = i;
+                break;
+            }
+        pomocnik = i;
+        }
+
+           cout << "Zadal jste hodnoty: " << endl;
+           for (int j = 0; j <= pomocnik; j++)
+       {
+        cout << dynamicke_pole[j] << endl;
+       }
+      
+      
+      
+    free(dynamicke_pole);
+    cout << "Adresa pole v pameti: " << dynamicke_pole << endl;
+    cout << "Adresa 1.hodnoty v pameti: " << &dynamicke_pole[0] << endl;
+    cout << "Adresa posledni hodnoty v pameti: " << &dynamicke_pole[pomocnik] << endl;
+    cout << "Velikost pole je " << &dynamicke_pole[++pomocnik] - &dynamicke_pole[0] << endl;
+
+    return 0;
+}
